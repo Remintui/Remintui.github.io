@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Remi Ntui · AI Engineering Lead · Cloud · Linux</title>
+<link rel="icon" href="assets/remi.jpg">
+<meta property="og:image" content="https://remintui.github.io/assets/remi.jpg">
+<meta name="description" content="Remi Ntui — AI Engineering Lead, agentic AI systems, cloud infrastructure (Azure, AWS, Linux). 8 years at Microsoft as Support Escalation Engineer; builder of FlowOps AI.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b1020; --bg2:#111832; --card:#151d3b; --line:#26305a;
+    --text:#e8ecf8; --muted:#9aa5c8; --brand:#4f8cff; --brand2:#22d3ee; --gold:#f5b942;
+    --radius:16px;
+  }
+  body.light{
+    --bg:#f6f8fc; --bg2:#ffffff; --card:#ffffff; --line:#e2e7f2;
+    --text:#0f172a; --muted:#55607d;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;transition:background .3s,color .3s}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1150px;margin:0 auto;padding:0 22px}
+
+  /* NAV */
+  header{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .logo{display:flex;align-items:center;gap:12px}
+  .mono{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;font-weight:800;color:#fff;background:linear-gradient(135deg,var(--brand),var(--brand2))}
+  .logo b{display:block;font-size:15px}
+  .logo small{display:block;font-size:10.5px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase}
+  .links{display:flex;gap:22px;align-items:center;font-size:14px;color:var(--muted)}
+  .links a:hover{color:var(--text)}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:12px;font-weight:600;font-size:14px;border:1px solid var(--line);transition:transform .15s,border-color .15s}
+  .btn:hover{transform:translateY(-2px);border-color:var(--brand)}
+  .btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;border:none}
+  .icon-btn{background:none;border:1px solid var(--line);color:var(--text);border-radius:10px;width:38px;height:38px;cursor:pointer;font-size:16px}
+  .burger{display:none}
+
+  /* HERO */
+  .hero{padding:80px 0 60px;display:grid;grid-template-columns:1.25fr 1fr;gap:50px;align-items:center}
+  .eyebrow{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--brand2);letter-spacing:.06em}
+  h1{font-size:clamp(38px,5.5vw,62px);line-height:1.05;font-weight:800;margin:12px 0}
+  h1 span{background:linear-gradient(135deg,var(--brand),var(--brand2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .sub{font-size:20px;color:var(--muted);margin-bottom:8px}
+  .typed{font-family:"JetBrains Mono",monospace;color:var(--gold);min-height:28px;margin-bottom:28px}
+  .typed::after{content:"▍";animation:blink 1s infinite}
+  @keyframes blink{50%{opacity:0}}
+  .ctas{display:flex;flex-wrap:wrap;gap:12px}
+  .tiles{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .tile{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
+  .tile .ic{font-size:24px}
+  .tile h4{font-size:15px;margin:8px 0 4px}
+  .tile p{font-size:13px;color:var(--muted)}
+  .tile.wide{grid-column:span 2;display:flex;gap:16px;align-items:center}
+  .avatar{width:74px;height:74px;border-radius:50%;flex:none;display:grid;place-items:center;font-size:28px;font-weight:800;color:#fff;background:linear-gradient(135deg,var(--brand),var(--brand2));overflow:hidden}
+  .avatar img{width:100%;height:100%;object-fit:cover}
+  .portrait{grid-column:span 2;position:relative;border-radius:22px;overflow:hidden;border:1px solid var(--line);aspect-ratio:4/3;box-shadow:0 20px 50px rgba(0,0,0,.35)}
+  .portrait img{width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block}
+  .portrait .cap{position:absolute;left:0;right:0;bottom:0;padding:40px 20px 16px;background:linear-gradient(transparent,rgba(5,10,25,.88));color:#fff}
+  .portrait .cap h4{font-size:16px}
+  .portrait .cap p{font-size:13px;color:#cfd7ee}
+  .facts .me{width:100%;aspect-ratio:1/1;object-fit:cover;object-position:center 20%;border-radius:12px;margin-bottom:14px;display:block}
+
+  /* STATS */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:40px}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;text-align:center}
+  .stat b{font-size:30px;display:block;background:linear-gradient(135deg,var(--brand),var(--brand2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .stat span{font-size:13px;color:var(--muted)}
+
+  /* SECTIONS */
+  section{padding:70px 0;border-top:1px solid var(--line)}
+  .sec-head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:30px}
+  .sec-head h2{font-size:34px;font-weight:800}
+  .sec-head p{color:var(--muted);max-width:560px}
+  .tag{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--brand2);text-transform:uppercase;letter-spacing:.12em}
+
+  .about{display:grid;grid-template-columns:1.4fr 1fr;gap:30px}
+  .about p{color:var(--muted);margin-bottom:14px}
+  .about p strong{color:var(--text)}
+  .facts{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+  .facts li{list-style:none;padding:10px 0;border-bottom:1px dashed var(--line);font-size:14px;display:flex;gap:10px}
+  .facts li:last-child{border:none}
+
+  /* projects */
+  .filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+  .filters input{flex:1;min-width:200px;padding:11px 14px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--text);font:inherit}
+  .chip{padding:9px 14px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--muted);cursor:pointer;font-size:13px;font-weight:500}
+  .chip.on{background:var(--brand);color:#fff;border-color:var(--brand)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px;display:flex;flex-direction:column;transition:transform .2s,border-color .2s}
+  .card:hover{transform:translateY(-4px);border-color:var(--brand)}
+  .card .top{display:flex;justify-content:space-between;align-items:start;margin-bottom:10px}
+  .card .emoji{font-size:30px}
+  .status{font-size:11px;font-weight:600;padding:4px 10px;border-radius:999px;background:rgba(34,211,238,.12);color:var(--brand2)}
+  .status.dev{background:rgba(245,185,66,.14);color:var(--gold)}
+  .card h3{font-size:19px;margin-bottom:6px}
+  .card p{font-size:14px;color:var(--muted);flex:1}
+  .stack{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0}
+  .stack span{font-size:11.5px;font-family:"JetBrains Mono",monospace;padding:3px 9px;border-radius:6px;background:var(--bg2);border:1px solid var(--line);color:var(--muted)}
+  .card .go{font-size:14px;font-weight:600;color:var(--brand)}
+  .card .go:hover{text-decoration:underline}
+  .lnks{display:flex;flex-wrap:wrap;gap:8px}
+  .lnks .go{padding:8px 14px;border:1px solid var(--line);border-radius:10px;font-size:13.5px}
+  .lnks .go:hover{border-color:var(--brand);text-decoration:none}
+
+  /* skills */
+  .skills{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px}
+  .skill h4{margin-bottom:12px;display:flex;gap:8px;align-items:center}
+  .pills{display:flex;flex-wrap:wrap;gap:8px}
+  .pills span{font-size:13px;padding:6px 12px;border-radius:999px;background:var(--bg2);border:1px solid var(--line)}
+
+  /* achievements + timeline */
+  .ach{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px}
+  .ach .card{padding:22px}
+  .ach .card b{font-size:26px}
+  .timeline{position:relative;padding-left:28px}
+  .timeline::before{content:"";position:absolute;left:8px;top:6px;bottom:6px;width:2px;background:linear-gradient(var(--brand),var(--brand2))}
+  .tl{position:relative;margin-bottom:28px}
+  .tl::before{content:"";position:absolute;left:-26px;top:6px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:3px solid var(--brand)}
+  .tl .when{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--brand2)}
+  .tl h4{font-size:17px}
+  .tl p{color:var(--muted);font-size:14px}
+
+  /* resume + contact */
+  .cta-box{background:linear-gradient(135deg,rgba(79,140,255,.18),rgba(34,211,238,.12));border:1px solid var(--line);border-radius:22px;padding:40px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+  .cta-box h3{font-size:26px}
+  .cta-box p{color:var(--muted)}
+  .socials{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
+  .social{display:flex;gap:12px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;transition:border-color .2s}
+  .social:hover{border-color:var(--brand)}
+  .social .ic{font-size:22px}
+  .social small{display:block;color:var(--muted);font-size:12px}
+
+  footer{border-top:1px solid var(--line);padding:30px 0;color:var(--muted);font-size:13px}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
+  .reveal.in{opacity:1;transform:none}
+
+  @media(max-width:900px){
+    .hero,.about{grid-template-columns:1fr}
+    .stats{grid-template-columns:repeat(2,1fr)}
+    .links{display:none;position:absolute;top:68px;left:0;right:0;flex-direction:column;background:var(--bg2);padding:20px;border-bottom:1px solid var(--line)}
+    .links.open{display:flex}
+    .burger{display:block}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <nav>
+      <a href="#home" class="logo">
+        <div class="mono">RN</div>
+        <div><b>Remi Ntui</b><small>AI Agents · Cloud · Linux · Security</small></div>
+      </a>
+      <div class="links" id="links">
+        <a href="#live">Live Apps</a>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#achievements">Achievements</a>
+        <a href="#experience">Experience</a>
+        <a href="#ventures">Ventures</a>
+        <a href="#contact">Contact</a>
+        <a href="#resume" class="btn primary">Résumé</a>
+      </div>
+      <div style="display:flex;gap:8px">
+        <button class="icon-btn" id="theme" title="Toggle theme">☀️</button>
+        <button class="icon-btn burger" id="burger">☰</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap" id="home">
+  <!-- HERO -->
+  <div class="hero">
+    <div>
+      <div class="eyebrow">// hello world, I'm</div>
+      <h1>Remi <span>Ntui</span></h1>
+      <p class="sub">AI Engineering Lead with 15+ years in cloud, Linux and security — 8 years at Microsoft — now shipping production AI agent systems on AWS.</p>
+      <div class="typed" id="typed"></div>
+      <div class="ctas">
+        <a href="#projects" class="btn primary">🚀 View My Work</a>
+        <a href="#resume" class="btn">📄 Download Résumé</a>
+        <a href="#live" class="btn">⚡ Try My Live AI Apps</a>
+      </div>
+    </div>
+    <div class="tiles">
+      <div class="portrait">
+        <img src="assets/remi.jpg" alt="Portrait of Remi">
+        <div class="cap"><h4>Remi Ntui · AI Engineering Lead</h4><p>Ex-Microsoft Azure Linux Escalation Engineer · Wichita Falls, TX</p></div>
+      </div>
+      <div class="tile"><div class="ic">🤖</div><h4>AI Agents</h4><p>Claude Code, Codex, multi-agent, voice AI</p></div>
+      <div class="tile"><div class="ic">☁️</div><h4>Cloud</h4><p>Azure, AWS, Cloudflare, Linux</p></div>
+      <div class="tile"><div class="ic">⚙️</div><h4>Automation</h4><p>n8n, GoHighLevel, APIs, webhooks</p></div>
+      <div class="tile"><div class="ic">🔐</div><h4>Identity &amp; Security</h4><p>Entra ID, Kerberos, Zero Trust, CEH</p></div>
+    </div>
+  </div>
+
+  <div class="stats reveal">
+    <div class="stat"><b>15+</b><span>Years in enterprise tech</span></div>
+    <div class="stat"><b>2,000+</b><span>Fortune 500 escalations at Microsoft</span></div>
+    <div class="stat"><b>11</b><span>AI agents in FlowOps AI</span></div>
+    <div class="stat"><b>3</b><span>Security bugs found in Entra ID Linux login</span></div>
+  </div>
+
+  <section id="live" class="reveal">
+    <div class="sec-head"><div><div class="tag">Live now</div><h2>My AI products, live</h2></div><p>Production apps you can open today.</p></div>
+    <div class="grid">
+      <div class="card"><div class="top"><span class="emoji">⚡</span><span class="status">Live</span></div><h3>FlowOps AI</h3><p>11-agent AI workforce for service businesses.</p><div class="lnks" style="margin-top:14px"><a class="go" href="https://flowopai.com" target="_blank" rel="noopener">Website →</a><a class="go" href="https://portal.flowopai.com" target="_blank" rel="noopener">Client Portal →</a></div></div>
+      <div class="card"><div class="top"><span class="emoji">📣</span><span class="status">Live</span></div><h3>FlowOps Ads</h3><p>AI ad automation on the Meta Marketing API.</p><div class="lnks" style="margin-top:14px"><a class="go" href="https://flowopads.com" target="_blank" rel="noopener">Website →</a><a class="go" href="https://app.flowopads.com" target="_blank" rel="noopener">Ads Portal →</a></div></div>
+      <div class="card"><div class="top"><span class="emoji">🎬</span><span class="status">Live</span></div><h3>Cinema Studio</h3><p>Multi-agent AI film studio: idea to captioned short film.</p><div class="lnks" style="margin-top:14px"><a class="go" href="https://studio.flowopai.com" target="_blank" rel="noopener">Open the App →</a></div></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="reveal">
+    <div class="sec-head"><div><div class="tag">01 · About me</div><h2>Cloud depth. AI delivery.</h2></div></div>
+    <div class="about">
+      <div>
+        <p>I'm <strong>Remi Ntui</strong>, a technical program and cloud infrastructure leader with <strong>15+ years</strong> across enterprise technology, Microsoft Azure, AWS, Linux engineering, security, consulting and training.</p>
+        <p>For about <strong>eight years (2018–2026) at Microsoft</strong> I was a Support Escalation Engineer for Azure Linux — leading <strong>2,000+ escalations for Fortune 500 companies</strong>, coordinating engineering, networking, identity, security and product teams, and training engineers as an <strong>Azure Linux Academy</strong> trainer.</p>
+        <p>Through <strong>RemiRose Corporation</strong> I design and ship production AI agent systems — including <strong>FlowOps AI</strong>, an eleven-agent AI workforce for service businesses deployed on AWS. I build daily with agentic tools (<strong>Claude Code, OpenAI Codex</strong>), run AI agents in CI with automated tests and evaluation gates, and move safety rules out of prompts into fail-closed checks.</p>
+        <p>My philosophy: <strong>treat AI output as a fast first draft, and enforce what matters in code and tests.</strong></p>
+      </div>
+      <ul class="facts">
+        <img class="me" src="assets/remi.jpg" alt="Remi Ntui">
+        <li>📍 Wichita Falls, TX · open to remote / hybrid / onsite</li>
+        <li>🏢 Microsoft, Support Escalation Engineer (2018–2026)</li>
+        <li>💼 Technical Program Lead, RemiRose Corporation</li>
+        <li>🎓 B.S. Banking &amp; Finance, University of Buea + CS coursework</li>
+        <li>⛪ Program &amp; Operations Lead, Freedom Worldwide Mission</li>
+        <li>🌍 English · French</li>
+        <li>✅ Open to: AI / forward deployed engineering, TPM, cloud &amp; DevOps, solutions architecture, senior Linux roles</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="reveal">
+    <div class="sec-head">
+      <div><div class="tag">02 · Projects, AI Agents &amp; Apps</div><h2>Things I've built</h2></div>
+      <p>Production systems and products I've designed, architected and shipped. Source for commercial products is private; demos available on request.</p>
+    </div>
+    <div class="filters">
+      <input id="search" placeholder="🔍 Search projects, tech…">
+      <button class="chip on" data-f="all">All</button>
+      <button class="chip" data-f="ai">AI Agents</button>
+      <button class="chip" data-f="saas">SaaS</button>
+      <button class="chip" data-f="fintech">Fintech</button>
+      <button class="chip" data-f="media">Media</button>
+      <button class="chip" data-f="live">Live</button>
+    </div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="reveal">
+    <div class="sec-head"><div><div class="tag">03 · Skills</div><h2>Tech stack &amp; expertise</h2></div></div>
+    <div class="skills" id="skillsGrid"></div>
+  </section>
+
+  <!-- ACHIEVEMENTS -->
+  <section id="achievements" class="reveal">
+    <div class="sec-head"><div><div class="tag">04 · Achievements</div><h2>Milestones &amp; credentials</h2></div></div>
+    <div class="ach" id="achGrid"></div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="reveal">
+    <div class="sec-head"><div><div class="tag">05 · Career</div><h2>Experience</h2></div></div>
+    <div class="timeline">
+      <div class="tl"><div class="when">2018 – 2026</div><h4>Microsoft — Support Escalation Engineer, Azure Linux &amp; Cloud Infrastructure</h4><p>Led complex escalations for enterprise customers running business-critical Linux on Azure. Root-cause analysis across Azure VMs, RHEL, SLES, Ubuntu, networking, DNS, identity (Entra ID, PAM, SSSD, Kerberos, LDAP, OpenSSH), storage and VM provisioning. Found 3 security bugs in Entra ID SSH login on RHEL (including an SELinux policy gap) and wrote workaround guides other engineers used with customers. Tested 5 products with product teams before release. Azure Linux Academy trainer.</p></div>
+      <div class="tl"><div class="when">2017 – PRESENT</div><h4>RemiRose Corporation — Technical Program Lead &amp; Principal Technology Consultant</h4><p>Lead product strategy, design and delivery for four AI products, hands-on with Claude Code and OpenAI Codex; AI agents in CI pipelines with automated tests and evaluation gates. Built internal tooling adopted by engineers and subcontractors, and set standards for AI-assisted engineering. Analyze RFPs/RFQs and develop proposals for public-sector opportunities.</p></div>
+      <div class="tl"><div class="when">2019 – PRESENT</div><h4>Freedom Worldwide Mission — Program &amp; Operations Lead</h4><p>Program planning, volunteer coordination, communications, digital initiatives, teaching and community programs.</p></div>
+      <div class="tl"><div class="when">2017 – 2018</div><h4>Trinitech Consulting — Lead Multiplatform Systems Administrator</h4><p>Enterprise Linux and infrastructure administration: configuration, access, networking, security, monitoring and operations.</p></div>
+      <div class="tl"><div class="when">2012 – 2017</div><h4>Torchlight Consulting — Lead Systems Administrator</h4><p>Systems administration and infrastructure support across servers, workstations, networks, applications and user access.</p></div>
+      <div class="tl"><div class="when">2009 – 2012</div><h4>PWD Cooperative Credit Union — IT Support Team Lead</h4><p>Technical support leadership in a financial-services environment.</p></div>
+    </div>
+  </section>
+
+  <!-- VENTURES -->
+  <section id="ventures" class="reveal">
+    <div class="sec-head"><div><div class="tag">06 · Business &amp; Ventures</div><h2>Companies &amp; websites</h2></div></div>
+    <div class="socials" id="ventGrid"></div>
+  </section>
+
+  <!-- RESUME -->
+  <section id="resume" class="reveal">
+    <div class="cta-box">
+      <div><h3>📄 My Résumé</h3><p>Résumé plus an 11-page portfolio of case studies: Microsoft, FlowOps AI, FlowOps Ads, Cinema Studio and Glosavida.</p></div>
+      <div class="ctas">
+        <a href="assets/Remi-Ntui-Resume.pdf" target="_blank" class="btn primary">Download PDF</a>
+        <a href="https://www.linkedin.com/in/remintui" target="_blank" class="btn">View on LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="reveal">
+    <div class="sec-head"><div><div class="tag">07 · Connect</div><h2>Let's build something</h2></div><p>Hiring for AI, cloud or program leadership — or need AI agents working in your business? Let’s talk.</p></div>
+    <div class="socials">
+      <a class="social" href="mailto:remintui@gmail.com"><span class="ic">✉️</span><div>Email<small>remintui@gmail.com</small></div></a>
+      <a class="social" href="https://github.com/Remintui" target="_blank"><span class="ic">🐙</span><div>GitHub<small>@Remintui</small></div></a>
+      <a class="social" href="https://github.com/remirosecorp" target="_blank"><span class="ic">🏢</span><div>GitHub Org<small>@remirosecorp</small></div></a>
+      <a class="social" href="https://www.linkedin.com/in/remintui" target="_blank"><span class="ic">💼</span><div>LinkedIn<small>in/remintui</small></div></a>
+      <a class="social" href="https://flowopai.com" target="_blank"><span class="ic">⚡</span><div>FlowOps AI<small>flowopai.com</small></div></a>
+      <a class="social" href="tel:+19404104303"><span class="ic">📞</span><div>Office<small>(940) 410-4303</small></div></a>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap"><span>© <span id="yr"></span> Remi Ntui · RemiRose Corporation</span><a href="#home">Back to top ↑</a></div></footer>
+
+<script>
+/* ===== EDIT YOUR CONTENT HERE ===== */
+const PROJECTS = [
+  {e:"⚡",t:"FlowOps AI",tags:["ai","saas","live"],s:"Live on AWS",u:"",links:[["Website","https://flowopai.com"],["Client Portal","https://portal.flowopai.com"]],
+   d:"Eleven-agent AI workforce for service businesses, from first inquiry to referral. One voice agent calls new leads within minutes and books appointments; ten background agents run intake, follow-up, onboarding, client service, reviews, marketing, prospecting, compliance and reporting. First deployment: an insurance agency. Launch gated on 45 safety-rule tests and 29 end-to-end checks; consent, calling-hour and opt-out rules enforced as fail-closed database checks.",
+   k:["n8n","PostgreSQL","Vapi","GoHighLevel","AWS EC2 + SSM","Parameter Store","S3"]},
+  {e:"📣",t:"FlowOps Ads",tags:["ai","saas","live"],s:"Live on AWS",u:"",links:[["Website","https://flowopads.com"],["Ads Portal","https://app.flowopads.com"]],
+   d:"AI ad automation on the Meta Marketing API: generates AI copy and video creatives, applies special ad categories automatically, retires weak creatives and shifts budget to winners within hard caps. Approval-gated and running live campaigns.",
+   k:["Meta Marketing API","AI creatives","AWS","Guardrails"]},
+  {e:"🎬",t:"Cinema Studio",tags:["ai","saas","media","live"],s:"Live",u:"",links:[["Open the App","https://studio.flowopai.com"]],
+   d:"14-role multi-agent AI film studio: idea → captioned short film. LLM screenplay as strict JSON, voice-first shot timing, per-shot model routing, automatic lip-sync and face-consistency retakes, human approval gates, spending caps and multi-platform publishing.",
+   k:["ElevenLabs","Veo","Kling","Seedance","fal.ai","Multi-agent"]},
+  {e:"🌍",t:"Glosavida (formerly BitRemit)",tags:["fintech"],s:"Architecture",u:"",
+   d:"Crypto-to-mobile-money remittances paying out in Cameroon (BTC→USDT→XAF, MTN MoMo and Orange Money). Led feasibility and architecture including KYC/AML/OFAC and BEAC/COBAC rules; identified licensing and payout partnerships as the critical path.",
+   k:["Stablecoins","MTN MoMo","Orange Money","KYC/AML/OFAC"]},
+  {e:"📈",t:"AI Trader",tags:["ai","fintech"],s:"In development",u:"",
+   d:"Multi-asset trading assistant (stocks, crypto, forex, futures, options, indexes) with risk controls and a configurable daily target.",
+   k:["Python","AWS","Cloudflare"]},
+  {e:"🎥",t:"n8n AI Video Pipeline",tags:["ai","media"],s:"Built",u:"",
+   d:"Automated multi-scene AI video production with JSON-schema scene planning for Veo's 8-second clips, stitched and rendered automatically.",
+   k:["n8n","Veo","fal.ai","Shotstack","Supabase","Gemini"]},
+];
+const SKILLS = [
+  ["🤖 AI & Agent Systems",["Claude Code","OpenAI Codex","AI agents in CI","Multi-agent orchestration","Claude / Gemini / OpenRouter","Voice AI (Vapi)","Veo · Kling · ElevenLabs","Prompt & JSON-schema design","AI evals & guardrails","Human-in-the-loop","Azure AI"]],
+  ["☁️ Cloud & DevOps",["Azure (VMs, DevOps, ARM, Bicep, AI Foundry)","AWS (EC2, SSM, S3, Parameter Store)","Terraform","Infrastructure as Code","CI/CD","DevSecOps","VMware","Cloud migration"]],
+  ["🐧 Linux & Systems",["RHEL","SLES","Ubuntu","CentOS","Azure Linux Agent","Cloud troubleshooting"]],
+  ["🔐 Identity & Security",["Microsoft Entra ID","Entra Domain Services","PAM","SSSD","Kerberos","LDAP","OpenSSH","Secrets management","Zero Trust","Defender/MDE"]],
+  ["🌐 Networking",["TCP/IP","DNS","VPN","NSGs","IPv4/IPv6","iptables · nftables · firewalld"]],
+  ["💻 Code & Automation",["Python","PowerShell","Bash","SQL","JSON/YAML","Git","n8n","REST APIs & webhooks","GoHighLevel","Ansible"]],
+  ["🗄️ Data & Payments",["PostgreSQL","Supabase","Airtable","MTN MoMo / Orange Money APIs","KYC/AML/OFAC design"]],
+  ["📋 Program & Leadership",["Technical program management","Product strategy & roadmaps","Stakeholder management","Risk & dependency management","Incident management","Agile/Scrum","Gov. contracting & proposals","Training & mentoring"]],
+];
+const ACHIEVEMENTS = [
+  ["🏢","2,000+ escalations","Handled for Fortune 500 companies at Microsoft (2018–2026)."],
+  ["🔐","3 security bugs found","In Entra ID SSH login on RHEL in Azure, including an SELinux policy gap; fixes brought to product teams."],
+  ["🧪","5 products tested pre-release","Partnered with Microsoft product teams before launch."],
+  ["🧑‍🏫","Azure Linux Academy trainer","Mentored support engineers on Linux and Azure troubleshooting."],
+  ["🚀","Shipped FlowOps AI","11-agent AI workforce live on AWS, gated on 45 safety tests and 29 end-to-end checks."],
+  ["📜","Microsoft Certified: Azure AI Fundamentals (AI-900)","Current certification."],
+  ["🏅","Previously certified","AWS Certified Solutions Architect · RHCSA · Certified Ethical Hacker (CEH)."],
+  ["🎓","B.S. Banking & Finance","University of Buea, plus Computer Science coursework."],
+];
+const VENTURES = [
+  ["🏛️","RemiRose Corporation","remirosecorp.com","https://remirosecorp.com"],
+  ["⚡","FlowOps AI","flowopai.com","https://flowopai.com"],
+  ["🖥️","FlowOps AI Portal","portal.flowopai.com","https://portal.flowopai.com"],
+  ["📣","FlowOps Ads","flowopads.com","https://flowopads.com"],
+  ["🎬","Cinema Studio","studio.flowopai.com","https://studio.flowopai.com"],
+  ["🛡️","RemiRose Life360","Insurance","https://life360.remirosecorp.com"],
+  ["🧾","LegacyWise Tax","Tax preparation","https://advisors.legacywisetax.com"],
+  ["🌍","Glosavida","glosavida.com","https://glosavida.com"],
+  ["🎓","PioneerTech Institute","AI & Cloud training",""],
+];
+const ROLES = ["AI Engineering Lead","Agentic Development & AI Agent Systems","Azure · AWS · Linux","Forward Deployed AI Engineer","Technical Program Lead"];
+/* ===== END EDITABLE CONTENT ===== */
+
+const $=s=>document.querySelector(s);
+const grid=$("#grid");
+function renderProjects(f="all",q=""){
+  q=q.toLowerCase();
+  grid.innerHTML=PROJECTS.filter(p=>(f==="all"||p.tags.includes(f))&&(p.t+p.d+p.k.join(" ")).toLowerCase().includes(q)).map(p=>`
+  <div class="card">
+    <div class="top"><span class="emoji">${p.e}</span><span class="status ${p.s==="Live"?"":"dev"}">${p.s}</span></div>
+    <h3>${p.t}</h3><p>${p.d}</p>
+    <div class="stack">${p.k.map(x=>`<span>${x}</span>`).join("")}</div>
+    <div class="lnks">${(p.links||(p.u?[["Visit",p.u]]:[])).map(([n,u])=>`<a class="go" href="${u}" target="_blank" rel="noopener">${n} →</a>`).join("")||`<span class="go" style="color:var(--muted)">Demo on request</span>`}</div>
+  </div>`).join("")||`<p style="color:var(--muted)">No projects match.</p>`;
+}
+let filt="all";
+document.querySelectorAll(".chip").forEach(c=>c.onclick=()=>{document.querySelectorAll(".chip").forEach(x=>x.classList.remove("on"));c.classList.add("on");filt=c.dataset.f;renderProjects(filt,$("#search").value)});
+$("#search").oninput=e=>renderProjects(filt,e.target.value);
+renderProjects();
+
+$("#skillsGrid").innerHTML=SKILLS.map(([h,l])=>`<div class="card skill"><h4>${h}</h4><div class="pills">${l.map(x=>`<span>${x}</span>`).join("")}</div></div>`).join("");
+$("#achGrid").innerHTML=ACHIEVEMENTS.map(([i,t,d])=>`<div class="card"><b>${i}</b><h3 style="margin-top:8px">${t}</h3><p>${d}</p></div>`).join("");
+$("#ventGrid").innerHTML=VENTURES.map(([i,t,s,u])=>`<a class="social" ${u?`href="${u}" target="_blank"`:""}><span class="ic">${i}</span><div>${t}<small>${s}</small></div></a>`).join("");
+
+// typing effect
+let ri=0,ci=0,del=false;const ty=$("#typed");
+(function tick(){const w=ROLES[ri];ty.textContent=w.slice(0,ci);
+  if(!del&&ci<w.length)ci++;else if(del&&ci>0)ci--;else{del=!del;if(!del)ri=(ri+1)%ROLES.length;}
+  setTimeout(tick,del?40:(ci===w.length?1600:80));})();
+
+// theme
+const tb=$("#theme");
+try{if(localStorage.getItem("theme")==="light"){document.body.classList.add("light");tb.textContent="🌙"}}catch(e){}
+tb.onclick=()=>{const l=document.body.classList.toggle("light");tb.textContent=l?"🌙":"☀️";try{localStorage.setItem("theme",l?"light":"dark")}catch(e){}};
+$("#burger").onclick=()=>$("#links").classList.toggle("open");
+document.querySelectorAll("#links a").forEach(a=>a.onclick=()=>$("#links").classList.remove("open"));
+
+// reveal on scroll
+const io=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.target.classList.add("in")),{threshold:.12});
+document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+$("#yr").textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
